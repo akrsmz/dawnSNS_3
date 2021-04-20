@@ -75,14 +75,15 @@ class RegisterController extends Controller
     //     return view("auth.register");
     // }
 
-    public function register(Request $request){
-        if($request->isMethod('post')){
-            $data = $request->input();
+    public function register(Request $request){  //webページから送られたものを$requestへ入れる
 
-            $this->create($data);
-            return redirect('added');
+        if($request->isMethod('post')){   //post通信されたら
+            $data = $request->input();  //$dataのなかにinputされたものを入れる
+
+            $this->create($data);  //$this（枠組みの外の〜という意味）ここの$dataを64行目の(array $data)の中に入れてcreateの処理をする
+            return redirect('added');  //URL addedに飛ぶ
         }
-        return view('auth.register');
+        return view('auth.register');  //resources/views/auth/register.blade.phpを表示する
     }
 
     public function added(){
